@@ -1,11 +1,13 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
   Param,
   Post,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import User from 'src/user/user.entity';
@@ -16,28 +18,28 @@ import { CreateUserDto } from 'src/user/dto/user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   async getlAllUsers(): Promise<User[]> {
-    const users = await this.usersService.getAllUsers();
-    return users;
+    return await this.usersService.getAllUsers();
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
   async getUsersById(@Param('id') id: string): Promise<User> {
-    const user = await this.usersService.getUsersById(Number(id));
-    return user;
+    return await this.usersService.getUsersById(Number(id));
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Post()
   @UseGuards(AuthGuard('jwt'))
   async createUser(@Body() createUserDto: CreateUserDto) {
-    const newUser = await this.usersService.createUser(createUserDto);
-    return newUser;
+    return await this.usersService.createUser(createUserDto);
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Delete(':id')
   async DeleteQueryBuilder(@Param('id') id: string): Promise<User | null> {
-    const user = this.usersService.deleteById(Number(id));
-    return user;
+    return this.usersService.deleteById(Number(id));
   }
 }
