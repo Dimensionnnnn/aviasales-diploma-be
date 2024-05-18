@@ -1,17 +1,23 @@
 import { Exclude } from 'class-transformer';
-import { UUID } from 'crypto';
-import { Column, Entity, Generated, PrimaryGeneratedColumn } from 'typeorm';
+import { Tickets } from 'src/tickets/tickets.entity';
+import {
+  Column,
+  Entity,
+  Generated,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 class Users {
   @PrimaryGeneratedColumn()
-  @Generated('increment')
-  id: number;
+  @Generated('uuid')
+  id: string;
 
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Exclude()

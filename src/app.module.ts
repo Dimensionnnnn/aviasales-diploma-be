@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from 'src/database/database.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TicketsModule } from './tickets/tickets.module';
 
 const Joi = require('joi');
 
@@ -24,6 +25,7 @@ const Joi = require('joi');
     DatabaseModule,
     UsersModule,
     AuthModule,
+    TicketsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

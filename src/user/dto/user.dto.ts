@@ -12,3 +12,10 @@ export class CreateUserDto {
   @MinLength(6)
   password: string;
 }
+
+export class AuthUserResponseType {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+}

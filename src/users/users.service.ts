@@ -14,7 +14,7 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  async getUsersById(id: number) {
+  async getUsersById(id: string) {
     const user = await this.usersRepository.findOneBy({ id });
 
     if (user) {
@@ -35,7 +35,7 @@ export class UsersService {
     return newUser;
   }
 
-  async deleteById(id: number) {
+  async deleteById(id: string) {
     const user = await this.usersRepository.findOneBy({ id });
 
     if (!user) {

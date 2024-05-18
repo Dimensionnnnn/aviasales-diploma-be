@@ -27,7 +27,7 @@ export class UsersController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
   async getUsersById(@Param('id') id: string): Promise<User> {
-    return await this.usersService.getUsersById(Number(id));
+    return await this.usersService.getUsersById(id);
   }
 
   @UseInterceptors(ClassSerializerInterceptor)
@@ -40,6 +40,6 @@ export class UsersController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Delete(':id')
   async DeleteQueryBuilder(@Param('id') id: string): Promise<User | null> {
-    return this.usersService.deleteById(Number(id));
+    return this.usersService.deleteById(id);
   }
 }
